@@ -13,11 +13,11 @@ Element providing an all-solution responsive Carousel for the Web.
 @status alpha
 @homepage http://polymerlabs.github.io/magic-carousel
 -->
-<polymer-element name="magic-carousel" attributes="transition height selected" extends="core-selector" selected="0">
+<polymer-element name="magic-carousel" attributes="transition height selected interval auto transitionDuration" extends="core-selector" selected="0">
 	<template>
 		<link rel="stylesheet" href="magic-carousel.css">
 
-		<div class="slides-wrapper slides-wrapper--{{transition}}">
+		<div class="slides-wrapper slides-wrapper--{{transition}}" on-mouseover="{{stopInterval}}" on-mouseout="{{startInterval}}">
 			{{width}}x{{height}}
 			<shadow></shadow>
 		</div>
@@ -26,21 +26,63 @@ Element providing an all-solution responsive Carousel for the Web.
 	<script>
 		Polymer('magic-carousel', {
 
+			transitionDuration: 1000,
+			interval: 5000,
+			height: 300,
+			transition: 'slide',
+			auto: true,
+
 			created: function() {
-				this.height = 300;
-				this.transition = 'slide';
 				this.transitions = ['slide', 'fade'];
-				console.log(this.shadowRoot);
 			},
 
 			ready: function() {
 				this.super();
+				this.length = this.items.length;
 				window.addEventListener('resize', this.adjustSize.bind(this));
 				this.adjustSize();
+				this.startInterval();
+			},
+
+			selectNext: function() {
+				this.selected++;
+				if (this.selected >= this.length)
+					this.selected = 0;
+
+				this.checkOffset();
+			},
+
+			selectPrev: function() {
+				this.selected--;
+				if (this.selected < 0)
+					this.selected = this.length - 1;
+
+				this.checkOffset();
 			},
 
 			adjustSize: function() {
 				this.width = this.clientWidth;
+				this.checkOffset();
+			},
+
+			checkOffset: function() {
+				this.x = - this.selected * this.width;
+			},
+
+			startInterval: function() {
+				if (!this.auto)
+					return false;
+				this.intervalID = setInterval(this.selectNext.bind(this), this.interval);
+			},
+
+			stopInterval: function() {
+				if (!this.auto)
+					return false;
+				clearInterval(this.intervalID);
+			},
+
+			animate: function() {
+
 			}
 		});
 	</script>
