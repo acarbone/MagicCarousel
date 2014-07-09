@@ -5,7 +5,7 @@ Element providing an all-solution responsive Carousel for the Web.
 
 ##### Example
 
-    <magic-carousel></magic-carousel>
+		<magic-carousel></magic-carousel>
 
 @element magic-carousel
 @blurb Element providing an all-solution responsive Carousel for the Web.
@@ -13,24 +13,31 @@ Element providing an all-solution responsive Carousel for the Web.
 @homepage http://polymerlabs.github.io/magic-carousel
 -->
 <polymer-element name="magic-carousel" attributes="transition">
-  <template>
-    <link rel="stylesheet" href="magic-carousel.css">
+	<template>
+		<link rel="stylesheet" href="magic-carousel.css">
 
-    <div class="slides-wrapper slides-wrapper--{{transition}}">
-      <shadow></shadow>
-    </div>
-  </template>
-  
-  <script>
-    Polymer('magic-carousel', {
-      transition: 'slide',
-      transitions: ['slide', 'fade'],
-      ready: function() {
-        this.width = 500;
-        setTimeout(function() {
-          this.width = 600;
-        }.bind(this), 10000);
-      }
-    });
-  </script>
+		<div class="slides-wrapper slides-wrapper--{{transition}}">
+			{{width}}
+			<shadow></shadow>
+		</div>
+	</template>
+	
+	<script>
+		Polymer('magic-carousel', {
+
+			created: function() {
+				this.transition = 'slide';
+				this.transitions = ['slide', 'fade'];
+			},
+
+			ready: function() {
+				window.addEventListener('resize', this.adjustSize.bind(this));
+				this.adjustSize();
+			},
+
+			adjustSize: function() {
+				this.width = this.clientWidth;
+			}
+		});
+	</script>
 </polymer-element>
