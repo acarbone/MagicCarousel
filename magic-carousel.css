@@ -11,8 +11,8 @@
 .slides-wrapper--slide {
 	-webkit-transition: -webkit-transform {{transitionDuration}}ms cubic-bezier(.15,.92,.17,.93);
 	        transition: transform {{transitionDuration}}ms cubic-bezier(.15,.92,.17,.93);
-	-webkit-transform: translate3d({{x}}px, 0, 0);
-	        transform: translate3d({{x}}px, 0, 0);
+	-webkit-transform: translate3d({{-selected * width}}px, 0, 0);
+	        transform: translate3d({{-selected * width}}px, 0, 0);
 	will-change: transform;
 }
 

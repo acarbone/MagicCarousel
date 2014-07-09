@@ -19,7 +19,8 @@ TODO:
 - navigation dots
 - navigation with swipe
 -->
-<polymer-element name="magic-carousel" attributes="transition height selected interval auto transitionDuration" extends="core-selector" selected="0">
+<polymer-element name="magic-carousel" extends="core-selector" 
+	attributes="transition height selected interval auto transitionDuration arrows dots">
 	<template>
 		<link rel="stylesheet" href="magic-carousel.css">
 
@@ -37,6 +38,9 @@ TODO:
 			height: 300,
 			transition: 'slide',
 			auto: true,
+			selected: 0,
+			arrows: true,
+			dots: false,
 
 			created: function() {
 				this.transitions = ['slide', 'fade'];
@@ -54,25 +58,16 @@ TODO:
 				this.selected++;
 				if (this.selected >= this.length)
 					this.selected = 0;
-
-				this.checkOffset();
 			},
 
 			selectPrev: function() {
 				this.selected--;
 				if (this.selected < 0)
 					this.selected = this.length - 1;
-
-				this.checkOffset();
 			},
 
 			adjustSize: function() {
 				this.width = this.clientWidth;
-				this.checkOffset();
-			},
-
-			checkOffset: function() {
-				this.x = - this.selected * this.width;
 			},
 
 			startInterval: function() {
