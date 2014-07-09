@@ -5,6 +5,7 @@
 .slides-wrapper{
 	position: relative;
 	width: 2000em;
+	height: {{height}}px;
 	-webkit-transition: -webkit-transform .3s;
 	        transition: transform .3s;
 	-webkit-transform: translate3d(0, 0, 0);

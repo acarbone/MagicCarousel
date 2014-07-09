@@ -12,12 +12,12 @@ Element providing an all-solution responsive Carousel for the Web.
 @status alpha
 @homepage http://polymerlabs.github.io/magic-carousel
 -->
-<polymer-element name="magic-carousel" attributes="transition">
+<polymer-element name="magic-carousel" attributes="transition height">
 	<template>
 		<link rel="stylesheet" href="magic-carousel.css">
 
 		<div class="slides-wrapper slides-wrapper--{{transition}}">
-			{{width}}
+			{{width}}x{{height}}
 			<shadow></shadow>
 		</div>
 	</template>
@@ -26,6 +26,7 @@ Element providing an all-solution responsive Carousel for the Web.
 		Polymer('magic-carousel', {
 
 			created: function() {
+				this.height = 300;
 				this.transition = 'slide';
 				this.transitions = ['slide', 'fade'];
 			},
