@@ -1,9 +1,10 @@
 :host {
 	display: block;
+	overflow: hidden;
+	height: {{height}}px;
 }
 
-.slides-wrapper{
-	position: relative;
+.slides-wrapper {
 	width: 2000em;
 	height: {{height}}px;
 	-webkit-transition: -webkit-transform .3s;
@@ -13,20 +14,27 @@
 	will-change: transform;
 }
 
-::content .slide{
+.slides-wrapper--fade {
+	position: relative;
+}
+
+polyfill-next-selector { content: ':host > *'; }
+::content > * {
 	float:left;
 	height: 100%;
 	width: {{width}}px;
 	background-color: red;
 }
 
-	.slides-wrapper--fade ::content .slide {
-		position: absolute;
-		opacity: 0;
-		-webkit-transition: opacity .3s;
-		        transition: opacity .3s;
+polyfill-next-selector { content: ':host > .slides-wrapper--fade *'; }
+.slides-wrapper--fade ::content > * {
+	position: absolute;
+	opacity: 0;
+	-webkit-transition: opacity .3s;
+	        transition: opacity .3s;
+}
 
-	}
-	.slides-wrapper--fade ::content .slide.is-active {
-		opacity: 1;
-	}
+polyfill-next-selector { content: ':host > .slides-wrapper--fade .core-selected'; }
+.slides-wrapper--fade ::content > .core-selected {
+	opacity: 1;
+}

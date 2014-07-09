@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-selector/core-selector.html">
 
 <!--
 Element providing an all-solution responsive Carousel for the Web. 
@@ -12,7 +13,7 @@ Element providing an all-solution responsive Carousel for the Web.
 @status alpha
 @homepage http://polymerlabs.github.io/magic-carousel
 -->
-<polymer-element name="magic-carousel" attributes="transition height">
+<polymer-element name="magic-carousel" attributes="transition height selected" extends="core-selector" selected="0">
 	<template>
 		<link rel="stylesheet" href="magic-carousel.css">
 
@@ -29,9 +30,11 @@ Element providing an all-solution responsive Carousel for the Web.
 				this.height = 300;
 				this.transition = 'slide';
 				this.transitions = ['slide', 'fade'];
+				console.log(this.shadowRoot);
 			},
 
 			ready: function() {
+				this.super();
 				window.addEventListener('resize', this.adjustSize.bind(this));
 				this.adjustSize();
 			},

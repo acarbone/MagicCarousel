@@ -13,6 +13,7 @@
     "**/.*"
   ],
   "dependencies": {
-    "core-component-page": "Polymer/core-component-page#>=0.3.0 <1.0.0"
+    "core-component-page": "Polymer/core-component-page#>=0.3.0 <1.0.0",
+    "core-selector": "Polymer/core-selector#~0.3.3"
   }
 }
