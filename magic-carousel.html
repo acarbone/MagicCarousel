@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element providing an all-solution responsive Carousel for the Web. 
+
+##### Example
+
+    <magic-carousel></magic-carousel>
+
+@element magic-carousel
+@blurb Element providing an all-solution responsive Carousel for the Web.
+@status alpha
+@homepage http://polymerlabs.github.io/magic-carousel
+-->
+<polymer-element name="magic-carousel" attributes="transition">
+  <template>
+    <link rel="stylesheet" href="magic-carousel.css">
+
+    <div class="slides-wrapper slides-wrapper--{{transition}}">
+      <shadow></shadow>
+    </div>
+  </template>
+  
+  <script>
+    Polymer('magic-carousel', {
+      transition: 'slide',
+      transitions: ['slide', 'fade'],
+      ready: function() {
+        this.width = 500;
+        setTimeout(function() {
+          this.width = 600;
+        }.bind(this), 10000);
+      }
+    });
+  </script>
+</polymer-element>

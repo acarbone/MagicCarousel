@@ -1,0 +1,18 @@
+{
+  "name": "magic-carousel",
+  "version": "0.0.0",
+  "authors": [
+    "Alessandro Carbone <ale.carbo@gmail.com>"
+  ],
+  "description": "Carousel management component.",
+  "keywords": "carousel, polymer, web-components",
+  "main": "magic-carousel.html",
+  "license": "MIT",
+  "homepage": "https://github.com/acarbone/MagicCarousel",
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "core-component-page": "Polymer/core-component-page#>=0.3.0 <1.0.0"
+  }
+}

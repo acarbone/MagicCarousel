@@ -1,0 +1,31 @@
+:host {
+	display: block;
+}
+
+.slides-wrapper{
+	position: relative;
+	width: 2000em;
+	-webkit-transition: -webkit-transform .3s;
+	        transition: transform .3s;
+	-webkit-transform: translate3d(0, 0, 0);
+	        transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+::content .slide{
+	float:left;
+	height: 100%;
+	width: {{width}}px;
+	background-color: red;
+}
+
+	.slides-wrapper--fade ::content .slide {
+		position: absolute;
+		opacity: 0;
+		-webkit-transition: opacity .3s;
+		        transition: opacity .3s;
+
+	}
+	.slides-wrapper--fade ::content .slide.is-active {
+		opacity: 1;
+	}
